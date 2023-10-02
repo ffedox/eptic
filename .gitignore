@@ -18,6 +18,7 @@ eggs/
 lib/
 lib64/
 parts/
+data/
 sdist/
 var/
 *.egg-info/
@@ -91,3 +92,7 @@ target/
 
 # Hydra logs
 outputs
+
+# Config
+
+config.json

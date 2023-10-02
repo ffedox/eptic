@@ -12,8 +12,10 @@ from omegaconf import DictConfig
 def process_data(config: DictConfig):
     """Function to process the data"""
 
+    
+
     print(f"Process data using {config.data.raw}")
-    print(f"Columns used: {config.process.use_columns}")
+    #print(f"Columns used: {config.process.use_columns}")
 
 
 if __name__ == "__main__":
