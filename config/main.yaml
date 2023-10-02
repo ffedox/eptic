@@ -15,3 +15,7 @@ data:
 
 db:
   credentials: ../config.json
+
+paths:
+  tests: C:/Users/Alice/Desktop/Code/eptic/tests
+  src: C:/Users/Alice/Desktop/Code/eptic/src
