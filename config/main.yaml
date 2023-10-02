@@ -12,3 +12,6 @@ data:
   raw: data/raw/sample.csv
   processed: data/processed/processed.csv
   final: data/final/final.csv
+
+db:
+  credentials: ../config.json
