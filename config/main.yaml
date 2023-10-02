@@ -19,3 +19,6 @@ db:
 paths:
   tests: C:/Users/Alice/Desktop/Code/eptic/tests
   src: C:/Users/Alice/Desktop/Code/eptic/src
+
+outputs:
+  graphs: C:/Users/Alice/Desktop/Code/eptic/docs

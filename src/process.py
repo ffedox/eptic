@@ -1,8 +1,10 @@
-"""
-This is the demo code that uses hydra to access the parameters in under the directory config.
+import seaborn as sns
+import pandas as pd
+import matplotlib.pyplot as plt
+import os
+import sys
 
-Author: Khuyen Tran
-"""
+from db_connect import connect_to_db, get_database_config_from_json
 
 import hydra
 from omegaconf import DictConfig

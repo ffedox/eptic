@@ -14,6 +14,9 @@ mariadb = "^1.1.7"
 pytest = "^7.4.2"
 
 
+[tool.poetry.group.dev.dependencies]
+ipykernel = "^6.25.2"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
