@@ -13,7 +13,18 @@ pyodbc = "^4.0.39"
 mariadb = "^1.1.7"
 pytest = "^7.4.2"
 sqlalchemy = "^2.0.21"
-
+openpyxl = "^3.1.2"
+nltk = "^3.8.1"
+beautifulsoup4 = "^4.12.2"
+lxml = "^4.9.3"
+python-telegram-bot = {extras = ["job-queue"], version = "^20.6"}
+requests = "^2.31.0"
+graphviz = "^0.20.1"
+anyio = "^4.1.0"
+moviepy = "^1.0.3"
+ffmpeg = "^1.4"
+pydub = "^0.25.1"
+librosa = "^0.10.1"
 
 [tool.poetry.group.dev.dependencies]
 ipykernel = "^6.25.2"

@@ -96,3 +96,11 @@ outputs
 # Config
 
 config.json
+
+paper/
+
+bot/
+
+**/*.xlsx
+
+**/*.pptx
