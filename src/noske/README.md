@@ -1,3 +1,8 @@
+# Overview
+
+
+
+
 # To do
 
 E:\Code\eptic\src\noske\check_vert_file_structure.py -> For checking the integrity of the .vert files (missing tags and so on)
