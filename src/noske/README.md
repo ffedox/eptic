@@ -1,6 +1,6 @@
 # Overview
 
-![alt text](Screenshot 2024-02-09 083750.jpg)
+![](Screenshot%202024-02-09%20083750.jpg)
 
 # To do
 
