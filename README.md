@@ -2,6 +2,4 @@
 
 Codebase for EPTIC-related things
 
-## Data sources:
-
-- Database
+Things are mainly in src
