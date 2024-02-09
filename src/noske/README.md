@@ -1,8 +1,8 @@
+# To do
+
 E:\Code\eptic\src\noske\check_vert_file_structure.py -> For checking the integrity of the .vert files (missing tags and so on)
 
 E:\Code\eptic\src\noske\convert_vert_to_tabular.py -> To convert the .vert file to a tabular format
-
-The idea is that if we load noske and skeptic into a database together we will have to reconvert them to .vert anyways in the future 
 
 # Notes
 
