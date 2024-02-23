@@ -12,7 +12,7 @@ df2 = pd.read_excel(file_2_path)
 merged_df = pd.concat([df1, df2], ignore_index=True)
 
 # Save the merged DataFrame to a new Excel file
-output_path = 'E:\\Code\\eptic\\src\\noske\\final_corpus_noskeptic.xlsx'
+output_path = 'E:\\Code\\eptic\\src\\noske\\final_corpus_noskeptic2.xlsx'
 merged_df.to_excel(output_path, index=False)
 
 print(f"Merged file saved to {output_path}")

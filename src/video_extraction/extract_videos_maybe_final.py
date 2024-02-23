@@ -1,13 +1,19 @@
+import pandas as pd
 import subprocess
 from datetime import datetime, timedelta
+import os
 
-# Function to extract timestamps and download the video segment with all streams
-def download_video_segment(video_url, stream_start_time, m3u8_url, correction_offset_seconds=0):
+def download_video_segment(event_id, video_url, stream_start_time, m3u8_url, correction_offset_seconds=0):
+    # Ensure no leading/trailing whitespaces
+    video_url = video_url.strip()
+    stream_start_time = stream_start_time.strip()
+    m3u8_url = m3u8_url.strip()
+    
     # Extract the timestamps from the URL
     start_time_str = video_url.split('&playerStartTime=')[1].split('&')[0].split('-')[1]
     end_time_str = video_url.split('&playerEndTime=')[1].split('-')[1]
-
-    # Convert timestamps to datetime objects
+    
+    # Convert timestamps to datetime objects, ensuring to strip any potential whitespace
     stream_start = datetime.strptime(stream_start_time, "%H:%M:%S")
     desired_start = datetime.strptime(start_time_str, "%H:%M:%S")
     desired_end = datetime.strptime(end_time_str, "%H:%M:%S")
@@ -15,7 +21,7 @@ def download_video_segment(video_url, stream_start_time, m3u8_url, correction_of
     # Add 5 seconds to the desired_end timestamp
     desired_end += timedelta(seconds=5)
 
-    # Apply a correction offset if the video is consistently late by a known amount of seconds
+    # Apply a correction offset
     correction_offset = timedelta(seconds=correction_offset_seconds)
     desired_start -= correction_offset
     desired_end -= correction_offset
@@ -23,6 +29,11 @@ def download_video_segment(video_url, stream_start_time, m3u8_url, correction_of
     # Calculate offset and duration
     offset_seconds = (desired_start - stream_start).total_seconds()
     duration_seconds = (desired_end - desired_start).total_seconds()
+
+    # Ensure the videos directory exists
+    output_dir = "E:\\Code\\eptic\\src\\video_extraction\\videos3"
+    os.makedirs(output_dir, exist_ok=True)
+    output_file_path = os.path.join(output_dir, f"{event_id}.mp4")
 
     # Construct the ffmpeg command to include all streams
     ffmpeg_command = [
@@ -38,17 +49,23 @@ def download_video_segment(video_url, stream_start_time, m3u8_url, correction_of
         "-c:v", "copy",  # Copy video codec
         "-c:a", "aac",  # Transcode audio to AAC
         "-v", "verbose",  # Increase verbosity for detailed output
-        "143.mp4"
+        output_file_path
     ]
 
     # Execute the ffmpeg command
     subprocess.run(ffmpeg_command)
+    print(f"Downloaded video segment for event_id {event_id} to {output_file_path}")
 
-# Example usage:
-video_url_example = "https://www.europarl.europa.eu/plenary/en/vod.html?mode=unit&vodLanguage=EN&playerStartTime=20110216-20:15:09&playerEndTime=20110216-20:17:12"
-stream_start_time_example = "16:43:17"
-m3u8_url_example = "https://manifest.europarl.streaming.arbor.nl/live/201102160900plenary13/index.m3u8?start=2011-02-16T15%3A43%3A17Z&end=2011-02-16T16%3A54%3A49Z&subtitles=1"
-correction_offset_seconds_example = 1  # Adjust this value as needed to correct for the delay
-download_video_segment(video_url_example, stream_start_time_example, m3u8_url_example, correction_offset_seconds_example)
+# Load the Excel file
+excel_file_path = "E:\\Code\\eptic\\src\\video_extraction\\137-222_with_start_time.xlsx"
+df = pd.read_excel(excel_file_path)
 
+# Convert event_id to str and strip whitespaces, then convert to int for comparison
+df['event_id'] = df['event_id'].astype(str).str.strip().astype(int)
 
+# Filter the DataFrame to include only rows with event_id >= 141
+filtered_df = df[df['event_id'] >= 139]
+
+# Process every row in the filtered DataFrame
+for index, row in filtered_df.iterrows():
+    download_video_segment(str(row['event_id']), row['timestamps_url'].strip(), row['start_time'].strip(), row['video_url'].strip(), 1)

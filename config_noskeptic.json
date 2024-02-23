@@ -1,0 +1,9 @@
+{
+    "database": {
+        "name": "noskeptic",
+        "user": "root",
+        "password": "SSdf123o.",
+        "host": "localhost",
+        "port": 3306
+    }
+}

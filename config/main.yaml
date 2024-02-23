@@ -16,6 +16,9 @@ data:
 db:
   credentials: E:\Code\eptic\config.json
 
+noskeptic:
+  credentials: E:\Code\eptic\config_noskeptic.json
+
 paths:
   tests: E:\Code\eptic\tests
   src: E:\Code\eptic\src
